@@ -1,33 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float moveSpeed = 20f;
+
+    private Rigidbody2D rigidBody2D;
+    Vector2 momentumVector2;
     private void Update()
     {
         Vector2 inputVector = new Vector2(0, 0);
-        int moveSpeed = 10;
-
         if (Input.GetKey(KeyCode.W))
         {
-            inputVector.y += 1 * moveSpeed;
+            inputVector.y += moveSpeed;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            inputVector.y -= 1 * moveSpeed;
+            inputVector.y -= moveSpeed;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            inputVector.x -= 1 * moveSpeed;
+            inputVector.x -= moveSpeed;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            inputVector.x += 1 * moveSpeed;
+            inputVector.x += moveSpeed;
         }
         inputVector = inputVector.normalized;
-        transform.position += new Vector3(inputVector.x, inputVector.y, 0) * Time.deltaTime * 5;
-        Debug.Log(inputVector);
+        momentumVector2 = inputVector * moveSpeed;
+        transform.position += new Vector3(momentumVector2.x, momentumVector2.y, 0) * Time.deltaTime;
+        Debug.Log("input vec" + inputVector);
+        Debug.Log(momentumVector2);
     }
 }

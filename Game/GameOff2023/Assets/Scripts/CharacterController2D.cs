@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
@@ -55,5 +52,10 @@ public class CharacterController2D : MonoBehaviour
             rigidBody2D.MovePosition(transform.position + moveDirection * DASH_AMOUNT);
             isDashButtonDown = false;
         }
+    }
+
+    private void printLastPressed()
+    {
+        Debug.Log("Last pressed: " + Input.inputString);
     }
 }
